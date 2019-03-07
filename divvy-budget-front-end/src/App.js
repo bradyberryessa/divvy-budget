@@ -4,14 +4,19 @@ import React, { useState } from "react";
 
 import Button from "./components/shared/button";
 import Modal from "./components/shared/modal";
+import Category from "./components/category";
 
 const App = () => {
   const [showNewCategoryModal, setNewCategoryModal] = useState(true);
   const [categoryName, setCategoryName] = useState("");
+  const [categories, setCategories] = useState([
+    "Housing",
+    "Transportation",
+    "Groceries"
+  ]);
 
   const createNewCategory = () => {
     setNewCategoryModal(true);
-    console.log(showNewCategoryModal);
   };
 
   const cancelCategory = () => {
@@ -20,6 +25,8 @@ const App = () => {
   };
 
   const saveNewCategory = () => {
+    setCategories([...categories, categoryName]);
+    setCategoryName("");
     setNewCategoryModal(false);
   };
 
@@ -29,7 +36,9 @@ const App = () => {
 
   return (
     <div className="App">
-      <div>Testing this out;</div>
+      {categories.map(category => (
+        <Category category={category} />
+      ))}
       <Button buttonClicked={createNewCategory}>+ Create new category</Button>
       <Modal show={showNewCategoryModal}>
         <h2>New Category</h2>
