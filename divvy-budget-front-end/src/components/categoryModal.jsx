@@ -5,9 +5,17 @@ import React from "react";
 import Modal from "./shared/modal";
 import Button from "./shared/button";
 
-const CategoryModal = () => {
+const CategoryModal = ({ show }) => {
+  const cancelCategory = () => {
+    console.log("cancel");
+  };
+
+  const saveNewCategory = () => {
+    console.log("save");
+  };
+
   return (
-    <Modal>
+    <Modal show={show}>
       <h2>New Category</h2>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <input />

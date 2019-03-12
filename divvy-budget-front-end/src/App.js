@@ -2,17 +2,17 @@ import "./App.css";
 
 import React, { useState } from "react";
 
+import Category from "./components/category";
+import CategoryModal from "./components/modals/categoryModal";
 import Button from "./components/shared/button";
 import Modal from "./components/shared/modal";
-import Category from "./components/category";
 
 const App = () => {
   const [showNewCategoryModal, setNewCategoryModal] = useState(true);
-  const [categoryName, setCategoryName] = useState("");
   const [categories, setCategories] = useState([
-    "Housing",
-    "Transportation",
-    "Groceries"
+    { id: 1, name: "Housing" },
+    { id: 2, name: "Transportation" },
+    { id: 3, name: "Groceries" }
   ]);
 
   const createNewCategory = () => {
@@ -20,42 +20,25 @@ const App = () => {
   };
 
   const cancelCategory = () => {
-    setCategoryName("");
     setNewCategoryModal(false);
   };
 
-  const saveNewCategory = () => {
-    setCategories([...categories, categoryName]);
-    setCategoryName("");
+  const saveNewCategory = newCategory => {
+    setCategories([...categories, newCategory]);
     setNewCategoryModal(false);
-  };
-
-  const handleChange = event => {
-    setCategoryName(event.target.value);
   };
 
   return (
     <div className="App">
-      {categories.map(category => (
-        <Category category={category} />
+      {categories.map(({ id, name }) => (
+        <Category key={id} category={name} />
       ))}
       <Button buttonClicked={createNewCategory}>+ Create new category</Button>
-      <Modal show={showNewCategoryModal}>
-        <h2>New Category</h2>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <label>
-            Category Name
-            <input
-              type="text"
-              name="categoryName"
-              value={categoryName}
-              onChange={handleChange}
-            />
-          </label>
-        </div>
-        <Button buttonClicked={cancelCategory}>Cancel</Button>
-        <Button buttonClicked={saveNewCategory}>Save</Button>
-      </Modal>
+      <CategoryModal
+        show={showNewCategoryModal}
+        cancelCategory={cancelCategory}
+        saveNewCategory={saveNewCategory}
+      />
     </div>
   );
 };
