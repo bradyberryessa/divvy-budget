@@ -5,9 +5,10 @@ import React, { useState } from "react";
 import Category from "./components/category";
 import CategoryModal from "./components/modals/categoryModal";
 import Button from "./components/shared/button";
+import Modal from "./components/shared/modal";
 
 const App = () => {
-  const [showNewCategoryModal, setNewCategoryModal] = useState(false);
+  const [showNewCategoryModal, setNewCategoryModal] = useState(true);
   const [categories, setCategories] = useState([
     { id: 1, name: "Housing" },
     { id: 2, name: "Transportation" },
@@ -23,26 +24,14 @@ const App = () => {
   };
 
   const saveNewCategory = newCategory => {
-    const newNewCategory = {
-      id: categories[categories.length - 1].id + 1,
-      name: newCategory
-    };
-    setCategories([...categories, newNewCategory]);
+    setCategories([...categories, newCategory]);
     setNewCategoryModal(false);
   };
 
   return (
     <div className="App">
       {categories.map(({ id, name }) => (
-        <Category
-          key={id}
-          category={name}
-          budgetItems={[
-            { id: 1, name: "gas", amount: 50 },
-            { id: 2, name: "mortgage", amount: 50 },
-            { id: 3, name: "food", amount: 50 }
-          ]}
-        />
+        <Category key={id} category={name} />
       ))}
       <Button buttonClicked={createNewCategory}>+ Create new category</Button>
       <CategoryModal

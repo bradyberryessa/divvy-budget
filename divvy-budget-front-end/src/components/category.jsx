@@ -1,46 +1,20 @@
-import "./category.css";
-
 import React, { useState } from "react";
-
-import Button from "../components/shared/button";
 import BudgetItem from "./budgetItem";
-import BudgetItemModal from "./modals/budgetItemModal";
 
-const Category = ({ category, budgetItems }) => {
-  //   const [budgetItems, setBudgetItems] = useState();
-  const [showBudgetItemModal, setShowBudgetItemModal] = useState(false);
-
-  const newBudgetItem = () => {
-    console.log("newBudgetItem", showBudgetItemModal);
-    setShowBudgetItemModal(true);
-  };
-
-  const handleAddNewBudgetItem = budgetItemName => {
-    console.log(budgetItemName);
-    setShowBudgetItemModal(false);
-  };
-
-  const handleCancelModal = () => {
-    setShowBudgetItemModal(false);
-  };
+const Category = ({ category }) => {
+  const [budgetItems, setBudgetItems] = useState([
+    { id: 1, name: "gas", amount: 50 },
+    { id: 2, name: "mortgage", amount: 50 },
+    { id: 3, name: "food", amount: 50 }
+  ]);
 
   return (
-    <>
-      <BudgetItemModal
-        show={showBudgetItemModal}
-        newBudgetItem={handleAddNewBudgetItem}
-        cancelBudgetItem={handleCancelModal}
-      />
-      <div style={{ width: "200px" }}>
-        <div className="category-header">
-          <div>{category}</div>
-          <Button buttonClicked={newBudgetItem}>+</Button>
-        </div>
-        {budgetItems.map(({ id, name, amount }) => (
-          <BudgetItem key={id} name={name} amount={amount} />
-        ))}
-      </div>
-    </>
+    <div>
+      <div>{category}</div>
+      {budgetItems.map(({ id, name, amount }) => (
+        <BudgetItem key={id} name={name} amount={amount} />
+      ))}
+    </div>
   );
 };
 
