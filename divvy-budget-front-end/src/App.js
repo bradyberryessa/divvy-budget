@@ -1,13 +1,15 @@
 import "./App.css";
 
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 
 import Category from "./components/category";
 import CategoryModal from "./components/modals/categoryModal";
 import Button from "./components/shared/button";
 import http from "./http";
+import { hideCategoryModal, showCategoryModal } from "./store/actions";
 
-const App = () => {
+const App = props => {
   const [showNewCategoryModal, setNewCategoryModal] = useState(false);
   const [categories, setCategories] = useState([]);
   const [budgetItems, setBudgetItems] = useState([]);
@@ -44,15 +46,6 @@ const App = () => {
     setNewCategoryModal(false);
   };
 
-  const addBudgetItem = () => {
-    http
-      .post("/budget_items", { name: "BI", amount: 1506930, categoryId: 1 })
-      .then(response => {
-        console.log(response.data);
-        setBudgetItems([...budgetItems, response.data]);
-      });
-  };
-
   return (
     <div className="App">
       {categories.map(({ id, name }) => {
@@ -69,9 +62,11 @@ const App = () => {
           />
         );
       })}
-      <Button buttonClicked={createNewCategory}>+ Create new category</Button>
+      <Button buttonClicked={props.showCategoryModal}>
+        + Create new category
+      </Button>
       <CategoryModal
-        show={showNewCategoryModal}
+        show={props.modals.showCategoryModal}
         cancelCategory={cancelCategory}
         saveNewCategory={saveNewCategory}
       />
@@ -79,4 +74,15 @@ const App = () => {
   );
 };
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+  return { modals: state };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    showCategoryModal,
+    hideCategoryModal
+  }
+)(App);

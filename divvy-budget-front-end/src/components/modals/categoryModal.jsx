@@ -18,11 +18,9 @@ const CategoryModal = props => {
   }, []);
 
   const handleChange = event => {
-    if (editCategoryName) {
-      setEditCategoryName(event.target.value);
-    } else {
-      setCategoryName(event.target.value);
-    }
+    editCategoryName
+      ? setEditCategoryName(event.target.value)
+      : setCategoryName(event.target.value);
   };
 
   const handleCancelCategory = () => {
