@@ -1,54 +1,40 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 
-import http from "../http";
+import * as actions from "../store/actions";
 import BudgetItem from "./budgetItem";
-import BudgetItemModal from "./modals/budgetItemModal";
-import CategoryModal from "./modals/categoryModal";
 import Button from "./shared/button";
 
-const Category = ({ id, name, updateCategories, budgetItems }) => {
-  const [showCategoryModal, setShowCategoryModal] = useState(false);
-  const [showAddBudgetItemModal, setShowAddBudgetItemModal] = useState(false);
+const Category = props => {
+  const { name, budgetItems, showCategoryModal, editCategoryData } = props;
 
-  const handleCategoryClicked = () => {
-    setShowCategoryModal(true);
-  };
-
-  const cancelCategory = () => {
-    setShowCategoryModal(false);
-  };
-
-  const saveCategory = async updatedName => {
-    console.log(updatedName);
-    const { data: updatedCategory } = await http.put(`/categories/${id}`, {
-      name: updatedName
-    });
-    updateCategories(updatedCategory);
-    setShowCategoryModal(false);
-  };
-
-  const handleAddBudgetItem = () => {
-    setShowAddBudgetItemModal(showAddBudgetItemModal);
+  const handleCategoryNameClicked = categoryData => {
+    showCategoryModal();
+    editCategoryData(categoryData);
   };
 
   return (
-    <>
-      <CategoryModal
-        show={showCategoryModal}
-        cancelCategory={cancelCategory}
-        saveCategory={saveCategory}
-        editCategoryName={name}
-      />
-      <BudgetItemModal show={showAddBudgetItemModal} />
-      <div>
-        <div onClick={handleCategoryClicked}>{name}</div>
-        {budgetItems.map(({ id, name, amount }) => (
-          <BudgetItem key={id} name={name} amount={amount} />
-        ))}
-        <Button buttonClicked={handleAddBudgetItem}>Add Budget Item</Button>
-      </div>
-    </>
+    <div>
+      <div onClick={() => handleCategoryNameClicked(props)}>{name}</div>
+      {budgetItems.map(({ id, name, amount }) => (
+        <BudgetItem key={id} name={name} amount={amount} />
+      ))}
+      <Button buttonClicked={props.showBudgetItemModal}>Add Budget Item</Button>
+    </div>
   );
 };
 
-export default Category;
+const mapDispatchToProps = dispatch => {
+  return {
+    showBudgetItemModal: () => dispatch(actions.showBudgetItemModal()),
+    hideBudgetItemModal: () => dispatch(actions.hideBudgetItemModal()),
+    showCategoryModal: () => dispatch(actions.showCategoryModal()),
+    editCategoryData: categoryData =>
+      dispatch(actions.editCategoryData(categoryData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Category);

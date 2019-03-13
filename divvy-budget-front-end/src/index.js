@@ -3,14 +3,22 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { applyMiddleware, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import reducer from "./store/reducers";
+import budgetItemsReducer from "./store/reducers/budgetItemsReducer";
+import categoriesReducer from "./store/reducers/categoriesReducer";
+import modalsReducer from "./store/reducers/modalsReducer";
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const reducers = combineReducers({
+  modals: modalsReducer,
+  categories: categoriesReducer,
+  budgetItems: budgetItemsReducer
+});
+
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const app = (
   <Provider store={store}>

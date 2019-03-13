@@ -5,14 +5,16 @@ import Button from "../shared/button";
 
 const BudgetItemModal = props => {
   const [budgetItemName, setBudgetItemName] = useState("");
-  const [editBudgetItemName, setEditBudgetItemName] = useState("");
+  const [budgetItemAmount, setBudgetItemAmount] = useState(0);
 
-  const { show, cancelBudgetItem, saveBudgetItem } = props;
+  const { show, cancelBudgetItem } = props;
 
-  const handleChange = event => {
-    editBudgetItemName
-      ? setEditBudgetItemName(event.target.value)
-      : setBudgetItemName(event.target.value);
+  const handleBudgetItemNameChange = event => {
+    setBudgetItemName(event.target.value);
+  };
+
+  const handleBudgetItemAmountChange = event => {
+    setBudgetItemAmount(event.target.value);
   };
 
   const handleCancelBudgetItem = () => {
@@ -20,27 +22,36 @@ const BudgetItemModal = props => {
     cancelBudgetItem();
   };
 
-  const handleSaveBudgetItem = () => {
-    setBudgetItemName("");
-    saveBudgetItem(editBudgetItemName ? editBudgetItemName : budgetItemName);
-  };
+  // const handleSaveBudgetItem = () => {
+  //   setBudgetItemName("");
+  //   saveBudgetItem(editBudgetItemName ? editBudgetItemName : budgetItemName);
+  // };
 
   return (
     <Modal show={show}>
-      <h2>New Category</h2>
+      <h2>New Budget Item</h2>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <label>
-          Category Name
+          Budget Item Name
           <input
             type="text"
-            name="categoryName"
-            value={editBudgetItemName ? editBudgetItemName : budgetItemName}
-            onChange={handleChange}
+            name="budgetItemName"
+            value={budgetItemName}
+            onChange={handleBudgetItemNameChange}
+          />
+        </label>
+        <label>
+          Budget Item Amount
+          <input
+            type="number"
+            name="budgetItemAmount"
+            value={budgetItemAmount}
+            onChange={handleBudgetItemAmountChange}
           />
         </label>
       </div>
       <Button buttonClicked={handleCancelBudgetItem}>Cancel</Button>
-      <Button buttonClicked={handleSaveBudgetItem}>Save</Button>
+      <Button buttonClicked={console.log("")}>Save</Button>
     </Modal>
   );
 };

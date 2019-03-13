@@ -1,58 +1,72 @@
 import "./categoryModal.css";
 
-import React, { useState, useEffect } from "react";
+import * as _ from "lodash";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 
-import Modal from "../shared/modal";
+import * as actions from "../../store/actions";
 import Button from "../shared/button";
+import Modal from "../shared/modal";
 
 const CategoryModal = props => {
   const [categoryName, setCategoryName] = useState("");
-  const [editCategoryName, setEditCategoryName] = useState("");
 
-  const { show, cancelCategory, saveNewCategory } = props;
+  const { show, modals, hideCategoryModal, editCategoryData } = props;
 
   useEffect(() => {
-    if (props.editCategoryName) {
-      setEditCategoryName(props.editCategoryName);
+    if (!_.isEmpty(modals.categoryData)) {
+      setCategoryName(modals.categoryData.name);
     }
   }, []);
 
   const handleChange = event => {
-    editCategoryName
-      ? setEditCategoryName(event.target.value)
-      : setCategoryName(event.target.value);
+    setCategoryName(event.target.value);
   };
 
   const handleCancelCategory = () => {
-    console.log("cancel");
     setCategoryName("");
-    cancelCategory();
+    hideCategoryModal();
+    editCategoryData({});
   };
 
-  const handleSaveNewCategory = () => {
-    console.log("save");
+  const handleSaveCategory = () => {
     setCategoryName("");
-    saveNewCategory(editCategoryName ? editCategoryName : categoryName);
   };
 
   return (
     <Modal show={show}>
-      <h2>New Category</h2>
+      <h2>
+        {!_.isEmpty(modals.categoryData) ? "Edit Category" : "New Category"}
+      </h2>
       <div style={{ display: "flex", flexDirection: "row" }}>
         <label>
           Category Name
           <input
             type="text"
             name="categoryName"
-            value={editCategoryName ? editCategoryName : categoryName}
+            value={categoryName}
             onChange={handleChange}
           />
         </label>
       </div>
       <Button buttonClicked={handleCancelCategory}>Cancel</Button>
-      <Button buttonClicked={handleSaveNewCategory}>Save</Button>
+      <Button buttonClicked={handleSaveCategory}>Save</Button>
     </Modal>
   );
 };
 
-export default CategoryModal;
+const mapStateToProps = state => {
+  return { modals: state.modals };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    editCategoryData: () => dispatch(actions.editCategoryData()),
+    hideCategoryModal: () => dispatch(actions.hideCategoryModal())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryModal);

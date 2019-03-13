@@ -2,18 +2,19 @@ import {
   SHOW_CATEGORY_MODAL,
   HIDE_CATEGORY_MODAL,
   SHOW_BUDGET_ITEM_MODAL,
-  HIDE_BUDGET_ITEM_MODAL
+  HIDE_BUDGET_ITEM_MODAL,
+  EDIT_CATEGORY_DATA
 } from "../actions/types";
 
 const initalState = {
   showCategoryModal: false,
-  showBudgetItemModal: false
+  showBudgetItemModal: false,
+  categoryData: {}
 };
 
 export default (state = initalState, action) => {
   switch (action.type) {
     case SHOW_CATEGORY_MODAL:
-      console.log("SHOWING CATEGORY MODAL");
       return {
         ...state,
         showCategoryModal: true
@@ -32,6 +33,11 @@ export default (state = initalState, action) => {
       return {
         ...state,
         showBudgetItemModal: false
+      };
+    case EDIT_CATEGORY_DATA:
+      return {
+        ...state,
+        categoryData: action.payload
       };
     default:
       return state;
