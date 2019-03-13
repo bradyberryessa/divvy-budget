@@ -22,11 +22,6 @@ const BudgetItemModal = props => {
     cancelBudgetItem();
   };
 
-  // const handleSaveBudgetItem = () => {
-  //   setBudgetItemName("");
-  //   saveBudgetItem(editBudgetItemName ? editBudgetItemName : budgetItemName);
-  // };
-
   return (
     <Modal show={show}>
       <h2>New Budget Item</h2>
@@ -54,6 +49,10 @@ const BudgetItemModal = props => {
       <Button buttonClicked={console.log("")}>Save</Button>
     </Modal>
   );
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
 };
 
 export default BudgetItemModal;

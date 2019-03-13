@@ -6,13 +6,9 @@ import Modal from "./shared/modal";
 import Button from "./shared/button";
 
 const CategoryModal = ({ show }) => {
-  const cancelCategory = () => {
-    console.log("cancel");
-  };
+  const cancelCategory = () => {};
 
-  const saveNewCategory = () => {
-    console.log("save");
-  };
+  const saveNewCategory = () => {};
 
   return (
     <Modal show={show}>

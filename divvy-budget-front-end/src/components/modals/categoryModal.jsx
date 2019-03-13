@@ -11,7 +11,14 @@ import Modal from "../shared/modal";
 const CategoryModal = props => {
   const [categoryName, setCategoryName] = useState("");
 
-  const { show, modals, hideCategoryModal, editCategoryData } = props;
+  const {
+    show,
+    modals,
+    hideCategoryModal,
+    editCategoryData,
+    updateCategory,
+    addCategory
+  } = props;
 
   useEffect(() => {
     if (!_.isEmpty(modals.categoryData)) {
@@ -30,7 +37,13 @@ const CategoryModal = props => {
   };
 
   const handleSaveCategory = () => {
-    setCategoryName("");
+    if (!_.isEmpty(modals.categoryData)) {
+      const newCategoryData = { ...modals.categoryData, name: categoryName };
+      updateCategory(newCategoryData);
+    } else {
+      addCategory({ name: categoryName });
+    }
+    handleCancelCategory();
   };
 
   return (
@@ -62,7 +75,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     editCategoryData: () => dispatch(actions.editCategoryData()),
-    hideCategoryModal: () => dispatch(actions.hideCategoryModal())
+    hideCategoryModal: () => dispatch(actions.hideCategoryModal()),
+    addCategory: categoryName => dispatch(actions.addCategory(categoryName)),
+    updateCategory: newCategoryData =>
+      dispatch(actions.updateCategory(newCategoryData))
   };
 };
 

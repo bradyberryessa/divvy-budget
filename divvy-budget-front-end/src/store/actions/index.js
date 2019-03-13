@@ -3,7 +3,9 @@ export {
   hideCategoryModal,
   showBudgetItemModal,
   hideBudgetItemModal,
-  editCategoryData
+  editCategoryData,
+  addCategory,
+  updateCategory
 } from "./modals";
 
 export { fetchCategories } from "./categories";

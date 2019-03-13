@@ -37,7 +37,10 @@ export default (state = initalState, action) => {
     case EDIT_CATEGORY_DATA:
       return {
         ...state,
-        categoryData: action.payload
+        categoryData:
+          action.payload && action.payload.category
+            ? action.payload.category
+            : {}
       };
     default:
       return state;

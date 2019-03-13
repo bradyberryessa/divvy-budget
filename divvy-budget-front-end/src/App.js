@@ -28,6 +28,10 @@ const App = props => {
     <CategoryModal show={modals.showCategoryModal} />
   ) : null;
 
+  const budgetItemModal = modals.showBudgetItemModal ? (
+    <BudgetItemModal show={modals.showBudgetItemModal} />
+  ) : null;
+
   return (
     <div className="App">
       {categories.categories.map(props => {
@@ -46,7 +50,7 @@ const App = props => {
       })}
       <Button buttonClicked={showCategoryModal}>+ Create new category</Button>
       {categoryModal}
-      <BudgetItemModal show={modals.showBudgetItemModal} />
+      {budgetItemModal}
     </div>
   );
 };
