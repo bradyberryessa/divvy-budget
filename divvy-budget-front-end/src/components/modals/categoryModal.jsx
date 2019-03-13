@@ -37,12 +37,9 @@ const CategoryModal = props => {
   };
 
   const handleSaveCategory = () => {
-    if (!_.isEmpty(modals.categoryData)) {
-      const newCategoryData = { ...modals.categoryData, name: categoryName };
-      updateCategory(newCategoryData);
-    } else {
-      addCategory({ name: categoryName });
-    }
+    !_.isEmpty(modals.categoryData)
+      ? updateCategory({ ...modals.categoryData, name: categoryName })
+      : addCategory({ name: categoryName });
     handleCancelCategory();
   };
 

@@ -15,3 +15,18 @@ export const setBudgetItems = budgetItems => {
     payload: budgetItems
   };
 };
+
+export const deleteBudgetItem = budgetItemId => {
+  return dispatch => {
+    http.delete(`/budget_items/${budgetItemId}`).then(response => {
+      dispatch(budgetItemDeleted(budgetItemId));
+    });
+  };
+};
+
+export const budgetItemDeleted = budgetItemId => {
+  return {
+    type: actionTypes.DELETE_BUDGET_ITEM,
+    payload: budgetItemId
+  };
+};

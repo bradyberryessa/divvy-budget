@@ -1,15 +1,17 @@
 import {
-  SHOW_CATEGORY_MODAL,
+  EDIT_BUDGET_ITEM,
+  EDIT_CATEGORY_DATA,
+  HIDE_BUDGET_ITEM_MODAL,
   HIDE_CATEGORY_MODAL,
   SHOW_BUDGET_ITEM_MODAL,
-  HIDE_BUDGET_ITEM_MODAL,
-  EDIT_CATEGORY_DATA
+  SHOW_CATEGORY_MODAL
 } from "../actions/types";
 
 const initalState = {
   showCategoryModal: false,
   showBudgetItemModal: false,
-  categoryData: {}
+  categoryData: {},
+  budgetItemData: {}
 };
 
 export default (state = initalState, action) => {
@@ -40,6 +42,14 @@ export default (state = initalState, action) => {
         categoryData:
           action.payload && action.payload.category
             ? action.payload.category
+            : {}
+      };
+    case EDIT_BUDGET_ITEM:
+      return {
+        ...state,
+        budgetItemData:
+          action.payload && action.payload.budgetItem
+            ? action.payload.budgetItem
             : {}
       };
     default:

@@ -1,5 +1,5 @@
-import * as actionTypes from "./types";
 import http from "../../http";
+import * as actionTypes from "./types";
 
 export const showCategoryModal = () => {
   return { type: actionTypes.SHOW_CATEGORY_MODAL };
@@ -19,6 +19,10 @@ export const hideBudgetItemModal = () => {
 
 export const editCategoryData = categoryData => {
   return { type: actionTypes.EDIT_CATEGORY_DATA, payload: categoryData };
+};
+
+export const editBudgetItem = budgetItem => {
+  return { type: actionTypes.EDIT_BUDGET_ITEM, payload: budgetItem };
 };
 
 export const addCategory = categoryName => {

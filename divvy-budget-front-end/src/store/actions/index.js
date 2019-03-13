@@ -10,4 +10,4 @@ export {
 
 export { fetchCategories } from "./categories";
 
-export { fetchBudgetItems } from "./budgetItems";
+export { fetchBudgetItems, deleteBudgetItem } from "./budgetItems";

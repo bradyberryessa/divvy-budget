@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-import Modal from "../shared/modal";
 import Button from "../shared/button";
+import Modal from "../shared/modal";
 
 const BudgetItemModal = props => {
   const [budgetItemName, setBudgetItemName] = useState("");
@@ -51,8 +52,16 @@ const BudgetItemModal = props => {
   );
 };
 
+const mapStateToProps = state => {
+  console.log(state);
+  return { state };
+};
+
 const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export default BudgetItemModal;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BudgetItemModal);

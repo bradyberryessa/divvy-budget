@@ -14,10 +14,23 @@ const Category = props => {
   };
 
   return (
-    <div>
-      <div onClick={() => handleCategoryNameClicked(props)}>{name}</div>
+    <div
+      style={{
+        margin: "auto",
+        width: "60vw",
+        backgroundColor: "grey",
+        borderRadius: "5px",
+        marginTop: "20px"
+      }}
+    >
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => handleCategoryNameClicked(props)}
+      >
+        {name}
+      </div>
       {budgetItems.map(({ id, name, amount }) => (
-        <BudgetItem key={id} name={name} amount={amount} />
+        <BudgetItem key={id} id={id} name={name} amount={amount} />
       ))}
       <Button buttonClicked={props.showBudgetItemModal}>Add Budget Item</Button>
     </div>
