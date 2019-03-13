@@ -1,15 +1,28 @@
 import "./categoryModal.css";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Modal from "../shared/modal";
 import Button from "../shared/button";
 
-const CategoryModal = ({ show, cancelCategory, saveNewCategory }) => {
+const CategoryModal = props => {
   const [categoryName, setCategoryName] = useState("");
+  const [editCategoryName, setEditCategoryName] = useState("");
+
+  const { show, cancelCategory, saveNewCategory } = props;
+
+  useEffect(() => {
+    if (props.editCategoryName) {
+      setEditCategoryName(props.editCategoryName);
+    }
+  }, []);
 
   const handleChange = event => {
-    setCategoryName(event.target.value);
+    if (editCategoryName) {
+      setEditCategoryName(event.target.value);
+    } else {
+      setCategoryName(event.target.value);
+    }
   };
 
   const handleCancelCategory = () => {
@@ -21,7 +34,7 @@ const CategoryModal = ({ show, cancelCategory, saveNewCategory }) => {
   const handleSaveNewCategory = () => {
     console.log("save");
     setCategoryName("");
-    saveNewCategory(categoryName);
+    saveNewCategory(editCategoryName ? editCategoryName : categoryName);
   };
 
   return (
@@ -33,7 +46,7 @@ const CategoryModal = ({ show, cancelCategory, saveNewCategory }) => {
           <input
             type="text"
             name="categoryName"
-            value={categoryName}
+            value={editCategoryName ? editCategoryName : categoryName}
             onChange={handleChange}
           />
         </label>
