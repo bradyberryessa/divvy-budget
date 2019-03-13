@@ -26,9 +26,10 @@ export const editBudgetItem = budgetItem => {
 };
 
 export const addCategory = categoryName => {
+  const body = { category: categoryName };
   return dispatch => {
-    http.post("/categories", categoryName).then(response => {
-      dispatch(addNewCategory(response.data));
+    http.post("/categories", body).then(response => {
+      dispatch(addNewCategory(response.data.data));
     });
   };
 };
@@ -36,7 +37,7 @@ export const addCategory = categoryName => {
 export const updateCategory = category => {
   return dispatch => {
     http.put(`/categories/${category.id}`, category).then(response => {
-      dispatch(updateCategories(response.data));
+      dispatch(updateCategories(response.data.data));
     });
   };
 };
@@ -50,9 +51,12 @@ export const updateCategories = updatedCategory => {
 };
 
 export const addBudgetItem = newBudgetItem => {
+  newBudgetItem.categoryId = newBudgetItem.categoryId.toString();
+  const body = { item: newBudgetItem };
+  console.log(body);
   return dispatch => {
-    http.post("/budget_items", newBudgetItem).then(response => {
-      dispatch(budgetItemAdded(response.data));
+    http.post("/items", body).then(response => {
+      dispatch(budgetItemAdded(response.data.data));
     });
   };
 };

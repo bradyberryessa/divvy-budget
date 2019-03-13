@@ -4,7 +4,8 @@ import * as actionTypes from "../actions/types";
 export const fetchCategories = () => {
   return dispatch => {
     http.get("/categories").then(response => {
-      dispatch(setCategories(response.data));
+      console.log(response);
+      dispatch(setCategories(response.data.data));
     });
   };
 };

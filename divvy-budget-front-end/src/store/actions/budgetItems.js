@@ -3,8 +3,8 @@ import * as actionTypes from "../actions/types";
 
 export const fetchBudgetItems = () => {
   return dispatch => {
-    http.get("/budget_items").then(response => {
-      dispatch(setBudgetItems(response.data));
+    http.get("/items").then(response => {
+      dispatch(setBudgetItems(response.data.data));
     });
   };
 };
@@ -18,7 +18,7 @@ export const setBudgetItems = budgetItems => {
 
 export const deleteBudgetItem = budgetItemId => {
   return dispatch => {
-    http.delete(`/budget_items/${budgetItemId}`).then(() => {
+    http.delete(`/items/${budgetItemId}`).then(() => {
       dispatch(budgetItemDeleted(budgetItemId));
     });
   };
