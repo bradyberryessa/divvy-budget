@@ -17,13 +17,10 @@ export const setCategories = categories => {
 };
 
 export const deleteCategory = (categoryId, budgetItems) => {
-  console.log(budgetItems);
   return dispatch => {
     http.delete(`/categories/${categoryId}`).then(() => {
       budgetItems.forEach(item => {
-        http
-          .delete(`/budget_items/${item.id}`)
-          .then(response => console.log(response));
+        http.delete(`/budget_items/${item.id}`);
       });
       dispatch(budgetItemDeleted(categoryId));
     });

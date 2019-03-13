@@ -21,9 +21,11 @@ const Category = props => {
   };
 
   const handleDeleteCategory = () => {
-    console.log("Handling it!");
-    console.log(budgetItems);
     deleteCategory(id, budgetItems);
+  };
+
+  const handleShowBudgetItemModal = () => {
+    props.showBudgetItemModal(id);
   };
 
   return (
@@ -54,14 +56,15 @@ const Category = props => {
       {budgetItems.map(({ id, name, amount }) => (
         <BudgetItem key={id} id={id} name={name} amount={amount} />
       ))}
-      <Button buttonClicked={props.showBudgetItemModal}>Add Budget Item</Button>
+      <Button buttonClicked={handleShowBudgetItemModal}>Add Budget Item</Button>
     </div>
   );
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    showBudgetItemModal: () => dispatch(actions.showBudgetItemModal()),
+    showBudgetItemModal: categoryId =>
+      dispatch(actions.showBudgetItemModal(categoryId)),
     hideBudgetItemModal: () => dispatch(actions.hideBudgetItemModal()),
     showCategoryModal: () => dispatch(actions.showCategoryModal()),
     deleteCategory: (categoryId, budgetItems) =>

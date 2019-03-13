@@ -11,6 +11,7 @@ const initalState = {
   showCategoryModal: false,
   showBudgetItemModal: false,
   categoryData: {},
+  categoryId: {},
   budgetItemData: {}
 };
 
@@ -29,12 +30,14 @@ export default (state = initalState, action) => {
     case SHOW_BUDGET_ITEM_MODAL:
       return {
         ...state,
-        showBudgetItemModal: true
+        showBudgetItemModal: true,
+        categoryId: action.payload
       };
     case HIDE_BUDGET_ITEM_MODAL:
       return {
         ...state,
-        showBudgetItemModal: false
+        showBudgetItemModal: false,
+        categoryId: null
       };
     case EDIT_CATEGORY_DATA:
       return {

@@ -5,6 +5,7 @@ export {
   hideBudgetItemModal,
   editCategoryData,
   addCategory,
+  addBudgetItem,
   updateCategory
 } from "./modals";
 

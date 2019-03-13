@@ -1,4 +1,8 @@
-import { SET_BUDGET_ITEMS, DELETE_BUDGET_ITEM } from "../actions/types";
+import {
+  SET_BUDGET_ITEMS,
+  DELETE_BUDGET_ITEM,
+  ADD_BUDGET_ITEM
+} from "../actions/types";
 
 const initalState = {
   budgetItems: []
@@ -10,6 +14,11 @@ export default (state = initalState, action) => {
       return {
         ...state,
         budgetItems: action.payload
+      };
+    case ADD_BUDGET_ITEM:
+      return {
+        ...state,
+        budgetItems: [...state.budgetItems, action.payload]
       };
     case DELETE_BUDGET_ITEM:
       const filteredBudgetItems = state.budgetItems.filter(

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import * as actions from "../../store/actions";
 import Button from "../shared/button";
 import Modal from "../shared/modal";
 
@@ -8,7 +9,7 @@ const BudgetItemModal = props => {
   const [budgetItemName, setBudgetItemName] = useState("");
   const [budgetItemAmount, setBudgetItemAmount] = useState(0);
 
-  const { show, cancelBudgetItem } = props;
+  const { show, addBudgetItem, hideBudgetItemModal, categoryId } = props;
 
   const handleBudgetItemNameChange = event => {
     setBudgetItemName(event.target.value);
@@ -20,7 +21,18 @@ const BudgetItemModal = props => {
 
   const handleCancelBudgetItem = () => {
     setBudgetItemName("");
-    cancelBudgetItem();
+    setBudgetItemAmount(0);
+    hideBudgetItemModal();
+  };
+
+  const handleAddBudgetItem = () => {
+    const newBudgetItem = {
+      name: budgetItemName,
+      amount: budgetItemAmount,
+      categoryId: categoryId
+    };
+    addBudgetItem(newBudgetItem);
+    handleCancelBudgetItem();
   };
 
   return (
@@ -47,18 +59,21 @@ const BudgetItemModal = props => {
         </label>
       </div>
       <Button buttonClicked={handleCancelBudgetItem}>Cancel</Button>
-      <Button buttonClicked={console.log("")}>Save</Button>
+      <Button buttonClicked={handleAddBudgetItem}>Save</Button>
     </Modal>
   );
 };
 
 const mapStateToProps = state => {
-  console.log(state);
-  return { state };
+  return { categoryId: state.modals.categoryId };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    hideBudgetItemModal: () => dispatch(actions.hideBudgetItemModal()),
+    addBudgetItem: newBudgetItem =>
+      dispatch(actions.addBudgetItem(newBudgetItem))
+  };
 };
 
 export default connect(

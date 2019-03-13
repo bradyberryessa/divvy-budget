@@ -33,11 +33,9 @@ export default (state = initalState, action) => {
         categories: updatedCategories
       };
     case DELETE_CATEGORY:
-      console.log("action.payload", action.payload);
       const filteredCategories = state.categories.filter(
         category => category.id !== action.payload
       );
-      console.log(filteredCategories);
       return {
         ...state,
         categories: filteredCategories

@@ -9,8 +9,8 @@ export const hideCategoryModal = () => {
   return { type: actionTypes.HIDE_CATEGORY_MODAL };
 };
 
-export const showBudgetItemModal = () => {
-  return { type: actionTypes.SHOW_BUDGET_ITEM_MODAL };
+export const showBudgetItemModal = categoryId => {
+  return { type: actionTypes.SHOW_BUDGET_ITEM_MODAL, payload: categoryId };
 };
 
 export const hideBudgetItemModal = () => {
@@ -42,11 +42,21 @@ export const updateCategory = category => {
 };
 
 export const addNewCategory = newCategory => {
-  console.log(newCategory);
   return { type: actionTypes.ADD_NEW_CATEGORY, payload: newCategory };
 };
 
 export const updateCategories = updatedCategory => {
-  console.log(updatedCategory);
   return { type: actionTypes.UPDATE_CATEGORY, payload: updatedCategory };
+};
+
+export const addBudgetItem = newBudgetItem => {
+  return dispatch => {
+    http.post("/budget_items", newBudgetItem).then(response => {
+      dispatch(budgetItemAdded(response.data));
+    });
+  };
+};
+
+export const budgetItemAdded = newBudgetItem => {
+  return { type: actionTypes.ADD_BUDGET_ITEM, payload: newBudgetItem };
 };
