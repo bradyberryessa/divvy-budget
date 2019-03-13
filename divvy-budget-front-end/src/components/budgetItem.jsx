@@ -17,7 +17,9 @@ const BudgetItem = props => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between"
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingBottom: "10px"
         }}
       >
         <div style={{ cursor: "pointer" }} onClick={showBudgetItemModal}>

@@ -2,9 +2,14 @@ import "./button.css";
 
 import React from "react";
 
-const Button = ({ children, buttonClicked }) => {
+const Button = ({ children, buttonClicked, backgroundColor, color }) => {
+  const styles = {
+    backgroundColor: backgroundColor ? backgroundColor : null,
+    color: color ? color : null
+  };
+
   return (
-    <button className="Button" onClick={buttonClicked}>
+    <button className="Button" style={styles} onClick={buttonClicked}>
       {children}
     </button>
   );

@@ -32,33 +32,59 @@ const Category = props => {
     <div
       style={{
         margin: "auto",
-        width: "60vw",
+        width: "55vw",
         backgroundColor: "white",
         color: "black",
         borderRadius: "5px",
         marginTop: "20px"
       }}
     >
-      <div style={{ padding: "25px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div />
+      <div style={{ padding: "25px", position: "relative" }}>
+        <div
+          style={{
+            paddingBottom: "10px"
+          }}
+        >
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              fontSize: "1.5em"
+            }}
             onClick={() => handleCategoryNameClicked(props)}
           >
             {name}
           </div>
-          <Button
-            style={{ cursor: "pointer" }}
-            buttonClicked={handleDeleteCategory}
+          <div
+            style={{
+              cursor: "pointer",
+              position: "absolute",
+              top: 24,
+              right: 20
+            }}
           >
-            Delete Category
-          </Button>
+            <Button buttonClicked={handleDeleteCategory} backgroundColor="red">
+              Delete Category
+            </Button>
+          </div>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            margin: "0 20px 10px 0",
+            fontWeight: "600"
+          }}
+        >
+          <div>Budget Items</div>
+          <div>Amount</div>
         </div>
         {budgetItems.map(({ id, name, amount }) => (
           <BudgetItem key={id} id={id} name={name} amount={amount} />
         ))}
-        <Button buttonClicked={handleShowBudgetItemModal}>
+        <Button
+          buttonClicked={handleShowBudgetItemModal}
+          backgroundColor="#409cf9"
+        >
           Add Budget Item
         </Button>
       </div>

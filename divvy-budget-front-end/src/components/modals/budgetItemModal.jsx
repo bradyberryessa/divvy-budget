@@ -38,28 +38,42 @@ const BudgetItemModal = props => {
   return (
     <Modal show={show}>
       <h2>New Budget Item</h2>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <label>
-          Budget Item Name
-          <input
-            type="text"
-            name="budgetItemName"
-            value={budgetItemName}
-            onChange={handleBudgetItemNameChange}
-          />
-        </label>
-        <label>
-          Budget Item Amount
-          <input
-            type="number"
-            name="budgetItemAmount"
-            value={budgetItemAmount}
-            onChange={handleBudgetItemAmountChange}
-          />
-        </label>
+      <div>
+        <div style={{ display: "flex", justifyContent: "space-around" }}>
+          <label>
+            Budget Item Name
+            <input
+              type="text"
+              name="budgetItemName"
+              value={budgetItemName}
+              onChange={handleBudgetItemNameChange}
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Budget Item Amount
+            <input
+              type="number"
+              name="budgetItemAmount"
+              value={budgetItemAmount}
+              onChange={handleBudgetItemAmountChange}
+            />
+          </label>
+        </div>
       </div>
-      <Button buttonClicked={handleCancelBudgetItem}>Cancel</Button>
-      <Button buttonClicked={handleAddBudgetItem}>Save</Button>
+      <div style={{ margin: "10px 0" }}>
+        <Button
+          buttonClicked={handleCancelBudgetItem}
+          backgroundColor="white"
+          color="black"
+        >
+          Cancel
+        </Button>
+        <Button buttonClicked={handleAddBudgetItem} backgroundColor="blue">
+          Save
+        </Button>
+      </div>
     </Modal>
   );
 };

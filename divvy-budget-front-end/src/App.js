@@ -34,7 +34,9 @@ const App = props => {
 
   return (
     <div className="App">
-      <Button buttonClicked={showCategoryModal}>+ Create new category</Button>
+      <Button buttonClicked={showCategoryModal} backgroundColor="#409cf9">
+        + Create new category
+      </Button>
       {categories.categories.map(props => {
         const { id, name } = props;
         const filteredBudgetItems = budgetItems.budgetItems.filter(
