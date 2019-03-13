@@ -33,30 +33,35 @@ const Category = props => {
       style={{
         margin: "auto",
         width: "60vw",
-        backgroundColor: "grey",
+        backgroundColor: "white",
+        color: "black",
         borderRadius: "5px",
         marginTop: "20px"
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div />
-        <div
-          style={{ cursor: "pointer" }}
-          onClick={() => handleCategoryNameClicked(props)}
-        >
-          {name}
+      <div style={{ padding: "25px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div />
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => handleCategoryNameClicked(props)}
+          >
+            {name}
+          </div>
+          <Button
+            style={{ cursor: "pointer" }}
+            buttonClicked={handleDeleteCategory}
+          >
+            Delete Category
+          </Button>
         </div>
-        <Button
-          style={{ cursor: "pointer" }}
-          buttonClicked={handleDeleteCategory}
-        >
-          Delete Category
+        {budgetItems.map(({ id, name, amount }) => (
+          <BudgetItem key={id} id={id} name={name} amount={amount} />
+        ))}
+        <Button buttonClicked={handleShowBudgetItemModal}>
+          Add Budget Item
         </Button>
       </div>
-      {budgetItems.map(({ id, name, amount }) => (
-        <BudgetItem key={id} id={id} name={name} amount={amount} />
-      ))}
-      <Button buttonClicked={handleShowBudgetItemModal}>Add Budget Item</Button>
     </div>
   );
 };
