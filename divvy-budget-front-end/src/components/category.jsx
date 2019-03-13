@@ -6,11 +6,24 @@ import BudgetItem from "./budgetItem";
 import Button from "./shared/button";
 
 const Category = props => {
-  const { name, budgetItems, showCategoryModal, editCategoryData } = props;
+  const {
+    name,
+    budgetItems,
+    showCategoryModal,
+    editCategoryData,
+    id,
+    deleteCategory
+  } = props;
 
   const handleCategoryNameClicked = categoryData => {
     showCategoryModal();
     editCategoryData(categoryData);
+  };
+
+  const handleDeleteCategory = () => {
+    console.log("Handling it!");
+    console.log(budgetItems);
+    deleteCategory(id, budgetItems);
   };
 
   return (
@@ -23,11 +36,20 @@ const Category = props => {
         marginTop: "20px"
       }}
     >
-      <div
-        style={{ cursor: "pointer" }}
-        onClick={() => handleCategoryNameClicked(props)}
-      >
-        {name}
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div />
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => handleCategoryNameClicked(props)}
+        >
+          {name}
+        </div>
+        <Button
+          style={{ cursor: "pointer" }}
+          buttonClicked={handleDeleteCategory}
+        >
+          Delete Category
+        </Button>
       </div>
       {budgetItems.map(({ id, name, amount }) => (
         <BudgetItem key={id} id={id} name={name} amount={amount} />
@@ -42,6 +64,8 @@ const mapDispatchToProps = dispatch => {
     showBudgetItemModal: () => dispatch(actions.showBudgetItemModal()),
     hideBudgetItemModal: () => dispatch(actions.hideBudgetItemModal()),
     showCategoryModal: () => dispatch(actions.showCategoryModal()),
+    deleteCategory: (categoryId, budgetItems) =>
+      dispatch(actions.deleteCategory(categoryId, budgetItems)),
     editCategoryData: categoryData =>
       dispatch(actions.editCategoryData(categoryData))
   };

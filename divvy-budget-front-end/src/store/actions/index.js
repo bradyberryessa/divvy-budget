@@ -8,6 +8,6 @@ export {
   updateCategory
 } from "./modals";
 
-export { fetchCategories } from "./categories";
+export { fetchCategories, deleteCategory } from "./categories";
 
 export { fetchBudgetItems, deleteBudgetItem } from "./budgetItems";

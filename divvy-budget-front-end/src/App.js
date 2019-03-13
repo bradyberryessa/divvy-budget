@@ -43,6 +43,7 @@ const App = props => {
         return (
           <Category
             key={id}
+            id={id}
             name={name}
             category={props}
             budgetItems={filteredBudgetItems}

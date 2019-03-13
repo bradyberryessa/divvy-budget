@@ -15,3 +15,24 @@ export const setCategories = categories => {
     payload: categories
   };
 };
+
+export const deleteCategory = (categoryId, budgetItems) => {
+  console.log(budgetItems);
+  return dispatch => {
+    http.delete(`/categories/${categoryId}`).then(() => {
+      budgetItems.forEach(item => {
+        http
+          .delete(`/budget_items/${item.id}`)
+          .then(response => console.log(response));
+      });
+      dispatch(budgetItemDeleted(categoryId));
+    });
+  };
+};
+
+export const budgetItemDeleted = budgetItemId => {
+  return {
+    type: actionTypes.DELETE_CATEGORY,
+    payload: budgetItemId
+  };
+};

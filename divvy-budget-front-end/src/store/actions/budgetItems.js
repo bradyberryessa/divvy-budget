@@ -18,7 +18,7 @@ export const setBudgetItems = budgetItems => {
 
 export const deleteBudgetItem = budgetItemId => {
   return dispatch => {
-    http.delete(`/budget_items/${budgetItemId}`).then(response => {
+    http.delete(`/budget_items/${budgetItemId}`).then(() => {
       dispatch(budgetItemDeleted(budgetItemId));
     });
   };

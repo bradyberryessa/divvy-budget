@@ -1,7 +1,8 @@
 import {
   ADD_NEW_CATEGORY,
   SET_CATEGORIES,
-  UPDATE_CATEGORY
+  UPDATE_CATEGORY,
+  DELETE_CATEGORY
 } from "../actions/types";
 
 const initalState = {
@@ -30,6 +31,16 @@ export default (state = initalState, action) => {
       return {
         ...state,
         categories: updatedCategories
+      };
+    case DELETE_CATEGORY:
+      console.log("action.payload", action.payload);
+      const filteredCategories = state.categories.filter(
+        category => category.id !== action.payload
+      );
+      console.log(filteredCategories);
+      return {
+        ...state,
+        categories: filteredCategories
       };
     default:
       return state;
