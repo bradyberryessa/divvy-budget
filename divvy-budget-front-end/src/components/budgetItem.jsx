@@ -1,3 +1,6 @@
+import "./budgetItem.css";
+
+import numeral from "numeral";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -13,27 +16,14 @@ const BudgetItem = props => {
 
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingBottom: "10px"
-        }}
-      >
-        <div style={{ cursor: "pointer" }} onClick={showBudgetItemModal}>
+      <div className="budget-item">
+        <div className="budget-title" onClick={showBudgetItemModal}>
           {name}
         </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row"
-          }}
-        >
-          <div>{amount}</div>
+        <div className="budget-content">
+          <div>{numeral(amount).format("$0,0.00")}</div>
           <div
-            style={{ color: "red", marginLeft: "10px", cursor: "pointer" }}
+            className="budget-item-delete-button"
             onClick={handleDeleteBudgetItem}
           >
             X

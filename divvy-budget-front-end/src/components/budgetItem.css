@@ -1,0 +1,22 @@
+.budget-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.budget-title {
+  cursor: pointer;
+}
+
+.budget-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.budget-item-delete-button {
+  color: red;
+  margin-left: 10px;
+  cursor: pointer;
+}

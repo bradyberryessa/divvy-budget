@@ -1,3 +1,5 @@
+import "./budgetItemModal.css";
+
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
@@ -39,7 +41,7 @@ const BudgetItemModal = props => {
     <Modal show={show}>
       <h2>New Budget Item</h2>
       <div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div className="budget-item-input">
           <label>
             Budget Item Name
             <input
@@ -50,7 +52,7 @@ const BudgetItemModal = props => {
             />
           </label>
         </div>
-        <div>
+        <div className="budget-item-input">
           <label>
             Budget Item Amount
             <input
@@ -62,7 +64,7 @@ const BudgetItemModal = props => {
           </label>
         </div>
       </div>
-      <div style={{ margin: "10px 0" }}>
+      <div className="button-margin">
         <Button
           buttonClicked={handleCancelBudgetItem}
           backgroundColor="white"

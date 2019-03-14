@@ -1,0 +1,8 @@
+.budget-item-input {
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-margin {
+  margin: 10px 0;
+}

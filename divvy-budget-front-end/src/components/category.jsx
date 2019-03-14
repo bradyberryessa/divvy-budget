@@ -1,3 +1,5 @@
+import "./category.css";
+
 import React from "react";
 import { connect } from "react-redux";
 
@@ -29,52 +31,25 @@ const Category = props => {
   };
 
   return (
-    <div
-      style={{
-        margin: "auto",
-        width: "55vw",
-        backgroundColor: "white",
-        color: "black",
-        borderRadius: "5px",
-        marginTop: "20px"
-      }}
-    >
-      <div style={{ padding: "25px", position: "relative" }}>
-        <div
-          style={{
-            paddingBottom: "10px"
-          }}
-        >
+    <div className="category">
+      <div className="category-container">
+        <div className="section-padding">
           <div
-            style={{
-              cursor: "pointer",
-              fontSize: "1.5em"
-            }}
+            className="category-title"
             onClick={() => handleCategoryNameClicked(props)}
           >
             {name}
           </div>
-          <div
-            style={{
-              cursor: "pointer",
-              position: "absolute",
-              top: 24,
-              right: 20
-            }}
-          >
-            <Button buttonClicked={handleDeleteCategory} backgroundColor="red">
+          <div className="category-delete-button-container">
+            <div
+              className="delete-category-button"
+              onClick={handleDeleteCategory}
+            >
               Delete Category
-            </Button>
+            </div>
           </div>
         </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            margin: "0 20px 10px 0",
-            fontWeight: "600"
-          }}
-        >
+        <div className="budget-items-header">
           <div>Budget Items</div>
           <div>Amount</div>
         </div>
@@ -85,7 +60,7 @@ const Category = props => {
           buttonClicked={handleShowBudgetItemModal}
           backgroundColor="#409cf9"
         >
-          Add Budget Item
+          + Add Budget Item
         </Button>
       </div>
     </div>

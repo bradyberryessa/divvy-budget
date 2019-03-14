@@ -48,7 +48,7 @@ const CategoryModal = props => {
       <h2>
         {!_.isEmpty(modals.categoryData) ? "Edit Category" : "New Category"}
       </h2>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div className="category-input">
         <label>
           Category Name
           <input
