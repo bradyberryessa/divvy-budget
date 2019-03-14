@@ -35,8 +35,9 @@ export const addCategory = categoryName => {
 };
 
 export const updateCategory = category => {
+  const body = { category: category };
   return dispatch => {
-    http.put(`/categories/${category.id}`, category).then(response => {
+    http.put(`/categories/${category.id}`, body).then(response => {
       dispatch(updateCategories(response.data.data));
     });
   };
@@ -53,7 +54,6 @@ export const updateCategories = updatedCategory => {
 export const addBudgetItem = newBudgetItem => {
   newBudgetItem.categoryId = newBudgetItem.categoryId.toString();
   const body = { item: newBudgetItem };
-  console.log(body);
   return dispatch => {
     http.post("/items", body).then(response => {
       dispatch(budgetItemAdded(response.data.data));

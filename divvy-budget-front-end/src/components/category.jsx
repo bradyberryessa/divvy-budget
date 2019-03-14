@@ -41,12 +41,9 @@ const Category = props => {
             {name}
           </div>
           <div className="category-delete-button-container">
-            <div
-              className="delete-category-button"
-              onClick={handleDeleteCategory}
-            >
+            <Button onClick={handleDeleteCategory} backgroundColor="red">
               Delete Category
-            </div>
+            </Button>
           </div>
         </div>
         <div className="budget-items-header">

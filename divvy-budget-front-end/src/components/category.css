@@ -24,8 +24,8 @@
 .category-delete-button-container {
   cursor: pointer;
   position: absolute;
-  top: 24;
-  right: 20;
+  top: 24px;
+  right: 20px;
 }
 
 .budget-items-header {

@@ -41,27 +41,23 @@ const BudgetItemModal = props => {
     <Modal show={show}>
       <h2>New Budget Item</h2>
       <div>
-        <div className="budget-item-input">
-          <label>
-            Budget Item Name
-            <input
-              type="text"
-              name="budgetItemName"
-              value={budgetItemName}
-              onChange={handleBudgetItemNameChange}
-            />
-          </label>
+        <div className="budget-item-input-container">
+          <label htmlFor="budgetItemName">Budget Item Name</label>
+          <input
+            type="text"
+            name="budgetItemName"
+            value={budgetItemName}
+            onChange={handleBudgetItemNameChange}
+          />
         </div>
-        <div className="budget-item-input">
-          <label>
-            Budget Item Amount
-            <input
-              type="number"
-              name="budgetItemAmount"
-              value={budgetItemAmount}
-              onChange={handleBudgetItemAmountChange}
-            />
-          </label>
+        <div className="budget-item-input-container">
+          <label htmlFor="budgetItemAmount">Budget Item Amount</label>
+          <input
+            type="number"
+            name="budgetItemAmount"
+            value={budgetItemAmount}
+            onChange={handleBudgetItemAmountChange}
+          />
         </div>
       </div>
       <div className="button-margin">
@@ -73,7 +69,7 @@ const BudgetItemModal = props => {
           Cancel
         </Button>
         <Button buttonClicked={handleAddBudgetItem} backgroundColor="blue">
-          Save
+          Add
         </Button>
       </div>
     </Modal>

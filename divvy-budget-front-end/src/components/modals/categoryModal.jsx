@@ -49,18 +49,26 @@ const CategoryModal = props => {
         {!_.isEmpty(modals.categoryData) ? "Edit Category" : "New Category"}
       </h2>
       <div className="category-input">
-        <label>
-          Category Name
-          <input
-            type="text"
-            name="categoryName"
-            value={categoryName}
-            onChange={handleChange}
-          />
-        </label>
+        <label htmlFor="categoryName">Category Name</label>
+        <input
+          type="text"
+          name="categoryName"
+          value={categoryName}
+          onChange={handleChange}
+        />
       </div>
-      <Button buttonClicked={handleCancelCategory}>Cancel</Button>
-      <Button buttonClicked={handleSaveCategory}>Save</Button>
+      <div className="button-margin">
+        <Button
+          buttonClicked={handleCancelCategory}
+          backgroundColor="white"
+          color="black"
+        >
+          Cancel
+        </Button>
+        <Button buttonClicked={handleSaveCategory} backgroundColor="">
+          Add
+        </Button>
+      </div>
     </Modal>
   );
 };

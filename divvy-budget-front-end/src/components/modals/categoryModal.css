@@ -1,4 +1,9 @@
 .category-input {
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.button-margin {
+  margin: 10px 0;
 }
