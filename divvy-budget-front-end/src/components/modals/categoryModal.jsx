@@ -66,7 +66,7 @@ const CategoryModal = props => {
           Cancel
         </Button>
         <Button buttonClicked={handleSaveCategory} backgroundColor="">
-          Add
+          Save
         </Button>
       </div>
     </Modal>

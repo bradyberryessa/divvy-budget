@@ -20,7 +20,7 @@ export const deleteCategory = (categoryId, budgetItems) => {
   return dispatch => {
     http.delete(`/categories/${categoryId}`).then(() => {
       budgetItems.forEach(item => {
-        http.delete(`/budget_items/${item.id}`);
+        http.delete(`/items/${item.id}`);
       });
       dispatch(budgetItemDeleted(categoryId));
     });

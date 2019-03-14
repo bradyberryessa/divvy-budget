@@ -1,7 +1,8 @@
 import "./budgetItemModal.css";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import * as _ from "lodash";
 
 import * as actions from "../../store/actions";
 import Button from "../shared/button";
@@ -11,7 +12,22 @@ const BudgetItemModal = props => {
   const [budgetItemName, setBudgetItemName] = useState("");
   const [budgetItemAmount, setBudgetItemAmount] = useState(0);
 
-  const { show, addBudgetItem, hideBudgetItemModal, categoryId } = props;
+  const {
+    show,
+    addBudgetItem,
+    updateBudgetItem,
+    hideBudgetItemModal,
+    categoryId,
+    modals,
+    editBudgetItemData
+  } = props;
+
+  useEffect(() => {
+    if (!_.isEmpty(modals.budgetItemData)) {
+      setBudgetItemName(modals.budgetItemData.name);
+      setBudgetItemAmount(modals.budgetItemData.amount);
+    }
+  }, []);
 
   const handleBudgetItemNameChange = event => {
     setBudgetItemName(event.target.value);
@@ -24,22 +40,36 @@ const BudgetItemModal = props => {
   const handleCancelBudgetItem = () => {
     setBudgetItemName("");
     setBudgetItemAmount(0);
+    editBudgetItemData({});
     hideBudgetItemModal();
   };
 
   const handleAddBudgetItem = () => {
-    const newBudgetItem = {
-      name: budgetItemName,
-      amount: budgetItemAmount,
-      categoryId: categoryId
-    };
-    addBudgetItem(newBudgetItem);
+    if (!_.isEmpty(modals.budgetItemData)) {
+      const updatedBudgetItem = {
+        ...modals.budgetItemData,
+        name: budgetItemName,
+        amount: budgetItemAmount
+      };
+      updateBudgetItem(updatedBudgetItem);
+    } else {
+      const newBudgetItem = {
+        name: budgetItemName,
+        amount: budgetItemAmount,
+        categoryId: categoryId
+      };
+      addBudgetItem(newBudgetItem);
+    }
     handleCancelBudgetItem();
   };
 
   return (
     <Modal show={show}>
-      <h2>New Budget Item</h2>
+      <h2>
+        {!_.isEmpty(modals.budgetItemData)
+          ? "Edit Budget Item"
+          : "New Budget Item"}
+      </h2>
       <div>
         <div className="budget-item-input-container">
           <label htmlFor="budgetItemName">Budget Item Name</label>
@@ -69,7 +99,7 @@ const BudgetItemModal = props => {
           Cancel
         </Button>
         <Button buttonClicked={handleAddBudgetItem} backgroundColor="blue">
-          Add
+          Save
         </Button>
       </div>
     </Modal>
@@ -77,14 +107,17 @@ const BudgetItemModal = props => {
 };
 
 const mapStateToProps = state => {
-  return { categoryId: state.modals.categoryId };
+  return { categoryId: state.modals.categoryId, modals: state.modals };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     hideBudgetItemModal: () => dispatch(actions.hideBudgetItemModal()),
+    editBudgetItemData: () => dispatch(actions.editBudgetItemData()),
     addBudgetItem: newBudgetItem =>
-      dispatch(actions.addBudgetItem(newBudgetItem))
+      dispatch(actions.addBudgetItem(newBudgetItem)),
+    updateBudgetItem: newBudgetItem =>
+      dispatch(actions.updateBudgetItem(newBudgetItem))
   };
 };
 

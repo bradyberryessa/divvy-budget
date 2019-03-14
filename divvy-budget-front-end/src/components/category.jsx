@@ -41,8 +41,8 @@ const Category = props => {
             {name}
           </div>
           <div className="category-delete-button-container">
-            <Button onClick={handleDeleteCategory} backgroundColor="red">
-              Delete Category
+            <Button buttonClicked={handleDeleteCategory} backgroundColor="red">
+              Delete
             </Button>
           </div>
         </div>
@@ -50,8 +50,14 @@ const Category = props => {
           <div>Budget Items</div>
           <div>Amount</div>
         </div>
-        {budgetItems.map(({ id, name, amount }) => (
-          <BudgetItem key={id} id={id} name={name} amount={amount} />
+        {budgetItems.map(({ id, name, amount, categoryId }) => (
+          <BudgetItem
+            key={id}
+            id={id}
+            name={name}
+            amount={amount}
+            categoryId={categoryId}
+          />
         ))}
         <Button
           buttonClicked={handleShowBudgetItemModal}

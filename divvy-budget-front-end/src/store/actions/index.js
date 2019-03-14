@@ -6,7 +6,9 @@ export {
   editCategoryData,
   addCategory,
   addBudgetItem,
-  updateCategory
+  updateBudgetItem,
+  updateCategory,
+  editBudgetItemData
 } from "./modals";
 
 export { fetchCategories, deleteCategory } from "./categories";

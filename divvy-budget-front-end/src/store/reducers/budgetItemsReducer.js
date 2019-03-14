@@ -1,7 +1,8 @@
 import {
-  SET_BUDGET_ITEMS,
+  ADD_BUDGET_ITEM,
   DELETE_BUDGET_ITEM,
-  ADD_BUDGET_ITEM
+  SET_BUDGET_ITEMS,
+  UPDATE_BUDGET_ITEM
 } from "../actions/types";
 
 const initalState = {
@@ -19,6 +20,14 @@ export default (state = initalState, action) => {
       return {
         ...state,
         budgetItems: [...state.budgetItems, action.payload]
+      };
+    case UPDATE_BUDGET_ITEM:
+      const updatedBudgetItems = state.budgetItems.map(item => {
+        return item.id === action.payload.id ? action.payload : item;
+      });
+      return {
+        ...state,
+        budgetItems: updatedBudgetItems
       };
     case DELETE_BUDGET_ITEM:
       const filteredBudgetItems = state.budgetItems.filter(

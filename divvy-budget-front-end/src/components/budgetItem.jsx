@@ -8,16 +8,30 @@ import * as actions from "../store/actions";
 import CategoryModal from "./modals/categoryModal";
 
 const BudgetItem = props => {
-  const { name, amount, showBudgetItemModal, id, deleteBudgetItem } = props;
+  const {
+    id,
+    name,
+    amount,
+    categoryId,
+    showBudgetItemModal,
+    deleteBudgetItem,
+    editBudgetItemData
+  } = props;
 
   const handleDeleteBudgetItem = () => {
     deleteBudgetItem(id);
   };
 
+  const handlehowBudgetItemModal = () => {
+    const budgetItemData = { id, name, amount, categoryId };
+    editBudgetItemData(budgetItemData);
+    showBudgetItemModal();
+  };
+
   return (
     <>
       <div className="budget-item">
-        <div className="budget-title" onClick={showBudgetItemModal}>
+        <div className="budget-title" onClick={handlehowBudgetItemModal}>
           {name}
         </div>
         <div className="budget-content">
@@ -38,6 +52,8 @@ const BudgetItem = props => {
 const mapDispatchToProps = dispatch => {
   return {
     showBudgetItemModal: () => dispatch(actions.showBudgetItemModal()),
+    editBudgetItemData: budgetItemData =>
+      dispatch(actions.editBudgetItemData(budgetItemData)),
     deleteBudgetItem: budgetItemId =>
       dispatch(actions.deleteBudgetItem(budgetItemId))
   };

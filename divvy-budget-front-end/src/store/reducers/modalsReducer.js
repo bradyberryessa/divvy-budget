@@ -1,5 +1,6 @@
 import {
   EDIT_BUDGET_ITEM,
+  EDIT_BUDGET_ITEM_DATA,
   EDIT_CATEGORY_DATA,
   HIDE_BUDGET_ITEM_MODAL,
   HIDE_CATEGORY_MODAL,
@@ -46,6 +47,11 @@ export default (state = initalState, action) => {
           action.payload && action.payload.category
             ? action.payload.category
             : {}
+      };
+    case EDIT_BUDGET_ITEM_DATA:
+      return {
+        ...state,
+        budgetItemData: action.payload ? action.payload : {}
       };
     case EDIT_BUDGET_ITEM:
       return {
