@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   const styles = {
     backgroundColor: backgroundColor ? backgroundColor : null,
-    border: `1px solid ${borderColor ? borderColor : "#4688F1"}`,
+    border: `2px solid ${borderColor ? borderColor : "#4688F1"}`,
     color: color ? color : null
   };
 
