@@ -3,6 +3,7 @@ import "./budgetItem.css";
 import numeral from "numeral";
 import React from "react";
 import { connect } from "react-redux";
+import romanNumeralConverter from "../romanNumeralConverter";
 
 import * as actions from "../store/actions";
 import CategoryModal from "./modals/categoryModal";
@@ -34,6 +35,7 @@ const BudgetItem = props => {
         <div className="budget-item-title" onClick={handlehowBudgetItemModal}>
           {name}
         </div>
+        <div>{romanNumeralConverter(amount)}</div>
         <div className="budget-item-content">
           <div>{numeral(amount).format("$0,0.00")}</div>
           <div
