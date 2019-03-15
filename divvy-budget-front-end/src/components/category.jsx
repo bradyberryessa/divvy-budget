@@ -41,7 +41,12 @@ const Category = props => {
             {name}
           </div>
           <div className="category-delete-button-container">
-            <Button buttonClicked={handleDeleteCategory} backgroundColor="red">
+            <Button
+              buttonClicked={handleDeleteCategory}
+              backgroundColor="white"
+              color="#FC384C"
+              borderColor="#FC384C"
+            >
               Delete
             </Button>
           </div>
@@ -59,10 +64,7 @@ const Category = props => {
             categoryId={categoryId}
           />
         ))}
-        <Button
-          buttonClicked={handleShowBudgetItemModal}
-          backgroundColor="#409cf9"
-        >
+        <Button buttonClicked={handleShowBudgetItemModal}>
           + Add Budget Item
         </Button>
       </div>

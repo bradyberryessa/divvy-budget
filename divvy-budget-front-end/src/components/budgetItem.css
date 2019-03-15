@@ -6,11 +6,11 @@
   padding-bottom: 10px;
 }
 
-.budget-title {
+.budget-item-title {
   cursor: pointer;
 }
 
-.budget-content {
+.budget-item-content {
   display: flex;
   flex-direction: row;
 }

@@ -1,5 +1,3 @@
-import "./categoryModal.css";
-
 import * as _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -45,12 +43,13 @@ const CategoryModal = props => {
 
   return (
     <Modal show={show}>
-      <h2>
+      <div className="modal-header">
         {!_.isEmpty(modals.categoryData) ? "Edit Category" : "New Category"}
-      </h2>
-      <div className="category-input">
+      </div>
+      <div className="input-container">
         <label htmlFor="categoryName">Category Name</label>
         <input
+          className="input"
           type="text"
           name="categoryName"
           value={categoryName}
@@ -60,8 +59,8 @@ const CategoryModal = props => {
       <div className="button-margin">
         <Button
           buttonClicked={handleCancelCategory}
-          backgroundColor="white"
-          color="black"
+          borderColor="#FC384C"
+          color="#FC384C"
         >
           Cancel
         </Button>

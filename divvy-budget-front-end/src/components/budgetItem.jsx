@@ -31,10 +31,10 @@ const BudgetItem = props => {
   return (
     <>
       <div className="budget-item">
-        <div className="budget-title" onClick={handlehowBudgetItemModal}>
+        <div className="budget-item-title" onClick={handlehowBudgetItemModal}>
           {name}
         </div>
-        <div className="budget-content">
+        <div className="budget-item-content">
           <div>{numeral(amount).format("$0,0.00")}</div>
           <div
             className="budget-item-delete-button"

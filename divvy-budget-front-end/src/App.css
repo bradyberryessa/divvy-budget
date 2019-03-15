@@ -2,3 +2,36 @@
   text-align: center;
   color: white;
 }
+
+.logo-layout {
+  max-height: 45px;
+  margin-bottom: -10px;
+}
+
+.budget-title {
+  font-size: 2.5em;
+  margin: 15px;
+}
+
+.modal-header {
+  font-size: 1.75em;
+  margin: 15px 0;
+}
+
+.input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.input {
+  border: 1px solid black;
+  border-radius: 2px;
+  font-size: 1.1em;
+  margin: 2px 0;
+}
+
+.button-margin {
+  margin: 10px 0;
+}

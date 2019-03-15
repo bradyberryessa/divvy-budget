@@ -58,6 +58,9 @@ export const updateCategories = updatedCategory => {
 export const addBudgetItem = newBudgetItem => {
   newBudgetItem.categoryId = newBudgetItem.categoryId.toString();
   newBudgetItem.amount = newBudgetItem.amount.toString();
+  if (!newBudgetItem.amount) {
+    newBudgetItem.amount = "0";
+  }
   const body = { item: newBudgetItem };
   return dispatch => {
     http.post("/items", body).then(response => {

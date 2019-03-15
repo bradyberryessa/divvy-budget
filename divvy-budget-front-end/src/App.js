@@ -34,9 +34,15 @@ const App = props => {
 
   return (
     <div className="App">
-      <Button buttonClicked={showCategoryModal} backgroundColor="#409cf9">
-        + Add new category
-      </Button>
+      <div className="budget-title">
+        <img
+          alt="logo"
+          className="logo-layout"
+          src="https://getdivvy.com/wp-content/themes/divvy-child/images/Divvy-Logo-Teal.png"
+        />{" "}
+        Budget
+      </div>
+      <Button buttonClicked={showCategoryModal}>+ Add new category</Button>
       {categories.categories.map(props => {
         const { id, name } = props;
         const filteredBudgetItems = budgetItems.budgetItems.filter(
@@ -79,3 +85,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+// TODO:
+// Walk through whole app to clean up imports and extract functions that can be extracted
+// Choose better button colors
+// Maybe add styling on budget items to make their own rows
+// Part II of the project

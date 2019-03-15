@@ -1,8 +1,6 @@
-import "./budgetItemModal.css";
-
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import * as _ from "lodash";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
 
 import * as actions from "../../store/actions";
 import Button from "../shared/button";
@@ -10,7 +8,7 @@ import Modal from "../shared/modal";
 
 const BudgetItemModal = props => {
   const [budgetItemName, setBudgetItemName] = useState("");
-  const [budgetItemAmount, setBudgetItemAmount] = useState(0);
+  const [budgetItemAmount, setBudgetItemAmount] = useState("");
 
   const {
     show,
@@ -65,24 +63,26 @@ const BudgetItemModal = props => {
 
   return (
     <Modal show={show}>
-      <h2>
+      <div className="modal-header">
         {!_.isEmpty(modals.budgetItemData)
           ? "Edit Budget Item"
           : "New Budget Item"}
-      </h2>
+      </div>
       <div>
-        <div className="budget-item-input-container">
+        <div className="input-container">
           <label htmlFor="budgetItemName">Budget Item Name</label>
           <input
+            className="input"
             type="text"
             name="budgetItemName"
             value={budgetItemName}
             onChange={handleBudgetItemNameChange}
           />
         </div>
-        <div className="budget-item-input-container">
+        <div className="input-container">
           <label htmlFor="budgetItemAmount">Budget Item Amount</label>
           <input
+            className="input"
             type="number"
             name="budgetItemAmount"
             value={budgetItemAmount}
@@ -93,14 +93,12 @@ const BudgetItemModal = props => {
       <div className="button-margin">
         <Button
           buttonClicked={handleCancelBudgetItem}
-          backgroundColor="white"
-          color="black"
+          borderColor="#FC384C"
+          color="#FC384C"
         >
           Cancel
         </Button>
-        <Button buttonClicked={handleAddBudgetItem} backgroundColor="blue">
-          Save
-        </Button>
+        <Button buttonClicked={handleAddBudgetItem}>Save</Button>
       </div>
     </Modal>
   );
